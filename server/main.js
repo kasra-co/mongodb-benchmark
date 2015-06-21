@@ -19,14 +19,6 @@ app.use(responseTime());
 app.use(logger());
 app.use(bodyParser());
 
-// Create the model
-// var Article = thinky.createModel('articles', {
-//   id: type.string(),
-//   title: type.string(),
-//   content: type.string(),
-//   createdAt: type.date().default(r.now())
-// });
-
 const ArticleSchema = new mongoose.Schema({
     title: String,
     content: String,
@@ -56,19 +48,6 @@ router.post('/articles', function * (next) {
   const result = yield article.save();
   return this.body = result;
 });
-
-// working dash
-
-// router.get('/articles', function*(next) {
-//   const result = yield r.db('rethinkbench').table('articles').run();//Article.orderBy({index: "createdAt"});
-//   return this.body = result;
-// });
-
-// router.post('/articles', function*(next){
-//   console.log(this.request.body);
-//   const result = yield r.db('rethinkbench').table('articles').insert(this.request.body).run()
-//   return this.body = result//result;
-// })
 
 app
   .use(router.routes())
