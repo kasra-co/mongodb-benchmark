@@ -15,7 +15,8 @@ const config = require(__dirname + "/config.js")
 const mongoUrl = process.env.MONGOHQ_URL || process.env.MONGOLAB_URI || config.mongodb.host + ':' + config.mongodb.port + '/' + config.mongodb.db;
 mongoose.connect(mongoUrl, {
   replset: {poolSize: 1000},
-  server: {poolSize: 1000}
+  server: {poolSize: 1000},
+  "db": { "read_preference": "secondaryPreferred", "readPreference": "secondaryPreferred" }}
 });
 
 app.use(responseTime());
