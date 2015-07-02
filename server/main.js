@@ -16,7 +16,7 @@ const mongoUrl = process.env.MONGOHQ_URL || process.env.MONGOLAB_URI || config.m
 mongoose.connect(mongoUrl, {
   replset: {poolSize: 1000},
   server: {poolSize: 1000},
-  "db": { "read_preference": "secondaryPreferred", "readPreference": "secondaryPreferred" }}
+  "db": { "read_preference": "secondaryPreferred", "readPreference": "secondaryPreferred" }
 });
 
 app.use(responseTime());
