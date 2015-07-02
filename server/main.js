@@ -13,7 +13,7 @@ const env = process.env.NODE_ENV || 'development';
 const config = require(__dirname + "/config.js")
 
 const mongoUrl = process.env.MONGOHQ_URL || process.env.MONGOLAB_URI || config.mongodb.host + ':' + config.mongodb.port + '/' + config.mongodb.db;
-mongoose.connect(mongoUrl);
+mongoose.connect(mongoUrl, {server: {poolSize: 1000}});
 
 app.use(responseTime());
 app.use(logger());
@@ -35,7 +35,7 @@ const Article = mongoose.model('article', ArticleSchema);
 router.get('/articles', function * (next) {
   yield next;
   // try {
-  const result = yield Article.find({}).limit(20).exec();
+  const result = yield Article.find({}).limit(100).sort('-createdAt')exec();
   return this.body = result;
   // } catch (error) {
   //   return this.body = error;
