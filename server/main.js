@@ -35,7 +35,7 @@ const Article = mongoose.model('article', ArticleSchema);
 router.get('/articles', function * (next) {
   yield next;
   // try {
-  const result = yield Article.find({}).limit(100).sort('-createdAt').exec();
+  const result = yield Article.find({}).limit(20).sort('-createdAt').exec();
   return this.body = result;
   // } catch (error) {
   //   return this.body = error;
