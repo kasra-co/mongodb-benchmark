@@ -1,2 +1,2 @@
 foobar
-bozo
+bozo-gozo
